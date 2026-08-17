@@ -1,0 +1,162 @@
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <DHT.h>
+#include <ArduinoJson.h>
+
+// --- CONFIGURACIÓN DE RED ---
+const char* ssid = "Wokwi-GUEST";
+const char* password = "";
+
+// --- CONFIGURACIÓN DE ENDPOINTS (MongoDB / Servidor) ---
+const char* url_enviar_datos = "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/TU_APP/service/http/incoming_webhook/recibir_datos";
+const char* url_obtener_config = "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/TU_APP/service/http/incoming_webhook/obtener_config";
+
+// --- PINES ---
+#define DHTPIN 4
+#define DHTTYPE DHT22
+DHT dht(DHTPIN, DHTTYPE);
+
+int humedadSueloPin = 34;
+int luzPin = 35;           
+int leds = 18;
+int ventilador = 19;
+int bomba = 5;
+
+// --- VARIABLES DE ESTADO Y CONTROL ---
+bool estadoBomba = false;
+bool estadoLuces = false;
+bool estadoVentilador = false;
+
+// Variables dinámicas para los límites (Se actualizan desde la App)
+float tempMin = 24.0, tempMax = 27.0;
+int humMin = 40, humMax = 60;
+int luzMin = 30, luzMax = 50;
+
+// Temporizador
+unsigned long tiempoAnterior = 0;
+const long intervaloDeLectura = 5000;
+
+// --- VARIABLE PARA EL ID ÚNICO ---
+String deviceID = "";
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(leds, OUTPUT);
+  pinMode(ventilador, OUTPUT);
+  pinMode(bomba, OUTPUT);
+  
+  digitalWrite(bomba, LOW);
+  digitalWrite(ventilador, LOW);
+  digitalWrite(leds, LOW);
+  
+  dht.begin();
+  setup_wifi();
+}
+
+void setup_wifi() {
+  Serial.print("\nConectando a WiFi...");
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi conectado");
+
+  // --- GENERACIÓN AUTOMÁTICA DEL ID ÚNICO ---
+  // Obtenemos la MAC (ej: 3C:71:BF:43:55:AA)
+  String mac = WiFi.macAddress();
+  mac.replace(":", ""); // Le sacamos los dos puntos para que quede limpio
+  deviceID = "INV-" + mac; // Le sumamos el prefijo
+  
+  Serial.println("=====================================");
+  Serial.println("DNI del Invernadero generado: " + deviceID);
+  Serial.println("=====================================");
+}
+
+void obtenerConfiguracionPlanta() {
+  HTTPClient http;
+  
+  // Agregamos el deviceID a la URL para que la base de datos sepa quién pregunta
+  String urlConID = String(url_obtener_config) + "?id=" + deviceID;
+  
+  http.begin(urlConID);
+  int httpResponseCode = http.GET();
+  
+  if (httpResponseCode > 0) {
+    String payload = http.getString();
+    DynamicJsonDocument doc(512);
+    DeserializationError error = deserializeJson(doc, payload);
+    
+    if (!error) {
+      tempMin = doc["temp_min"] | tempMin;
+      tempMax = doc["temp_max"] | tempMax;
+      humMin  = doc["hum_min"] | humMin;
+      humMax  = doc["hum_max"] | humMax;
+    }
+  }
+  http.end();
+}
+
+void loop() {
+  if (WiFi.status() != WL_CONNECTED) {
+    setup_wifi();
+  }
+
+  unsigned long tiempoActual = millis();
+  
+  if (tiempoActual - tiempoAnterior >= intervaloDeLectura) {
+    tiempoAnterior = tiempoActual;
+
+    // 1. OBTENER CONFIGURACIÓN
+    obtenerConfiguracionPlanta();
+
+    // 2. LECTURA DE SENSORES
+    float temp = dht.readTemperature();
+    int humedadPorcentaje = map(analogRead(humedadSueloPin), 0, 4095, 100, 0);
+    int luzPorcentaje = map(analogRead(luzPin), 0, 4095, 0, 100);
+
+    // 3. LÓGICA DE CONTROL
+    if (humedadPorcentaje < humMin) estadoBomba = true;
+    else if (humedadPorcentaje > humMax) estadoBomba = false;
+    digitalWrite(bomba, estadoBomba ? HIGH : LOW);
+
+    if (!isnan(temp)) {
+      if (temp >= tempMax) estadoVentilador = true;
+      else if (temp <= tempMin) estadoVentilador = false;
+      digitalWrite(ventilador, estadoVentilador ? HIGH : LOW);
+    }
+
+    if (luzPorcentaje < luzMin) estadoLuces = true;
+    else if (luzPorcentaje > luzMax) estadoLuces = false;
+    digitalWrite(leds, estadoLuces ? HIGH : LOW);
+
+    // 4. ENVÍO DE DATOS
+    HTTPClient http;
+    http.begin(url_enviar_datos);
+    http.addHeader("Content-Type", "application/json");
+
+    DynamicJsonDocument docEnvio(512);
+    
+    // --- INCORPORAMOS EL ID ÚNICO EN EL ENVÍO ---
+    docEnvio["device_id"] = deviceID; 
+    
+    docEnvio["temperatura"] = isnan(temp) ? 0.0 : temp;
+    docEnvio["humedad"] = humedadPorcentaje;
+    docEnvio["luz"] = luzPorcentaje;
+    docEnvio["estado_bomba"] = estadoBomba;
+    docEnvio["estado_luces"] = estadoLuces;
+    docEnvio["estado_ventilador"] = estadoVentilador;
+
+    String payloadEnvio;
+    serializeJson(docEnvio, payloadEnvio);
+
+    int httpResponseCode = http.POST(payloadEnvio);
+
+    if (httpResponseCode > 0) {
+      Serial.println("Datos enviados correctamente del dispositivo: " + deviceID);
+    } else {
+      Serial.println("Error en el envío POST");
+    }
+    http.end();
+  }
+}
