@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="es" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={theme:{extend:{"colors":{"on-tertiary-container":"#f8fef4","error-container":"#ffdad6","on-primary":"#ffffff","background":"#f9f9f7","inverse-surface":"#2f3130","on-primary-container":"#f8ffee","surface":"#f9f9f7","on-surface":"#1a1c1b","on-primary-fixed":"#0e2007","surface-container":"#eeeeec","surface-variant":"#e2e3e1","on-tertiary-fixed-variant":"#424841","tertiary-fixed":"#dee4da","on-secondary-fixed":"#001e2e","tertiary-container":"#70766e","on-tertiary":"#ffffff","on-surface-variant":"#444840","error":"#ba1a1a","secondary":"#38637f","on-error-container":"#93000a","secondary-fixed-dim":"#a1ccec","on-error":"#ffffff","tertiary":"#575e56","surface-tint":"#4f6445","secondary-container":"#b2ddfd","primary-fixed":"#d2eac2","on-tertiary-fixed":"#171d17","surface-container-high":"#e8e8e6","surface-dim":"#dadad8","on-secondary-container":"#37627e","tertiary-fixed-dim":"#c2c8bf","surface-container-highest":"#e2e3e1","surface-container-low":"#f4f4f2","on-primary-fixed-variant":"#384c2f","outline":"#74786f","primary-container":"#657b5a","inverse-on-surface":"#f1f1ef","outline-variant":"#c4c8bd","on-background":"#1a1c1b","on-secondary-fixed-variant":"#1d4b66","surface-container-lowest":"#ffffff","on-secondary":"#ffffff","surface-bright":"#f9f9f7","inverse-primary":"#b6cea8","primary":"#4d6243","primary-fixed-dim":"#b6cea8","secondary-fixed":"#c8e6ff"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"gutter":"16px","stack-lg":"40px","container-padding-mobile":"20px","container-padding-desktop":"48px","stack-md":"24px","stack-sm":"12px","base":"8px"},"fontFamily":{"body-lg":["Montserrat"],"headline-lg":["Montserrat"],"body-md":["Montserrat"],"headline-md":["Montserrat"],"headline-xl":["Montserrat"],"label-sm":["Montserrat"]},"fontSize":{"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"headline-xl":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.05em","fontWeight":"600"}]}}}}</script><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-background font-body-md text-on-surface min-h-screen flex items-center justify-center overflow-x-hidden"><div class="fixed inset-0 z-0 bg-gradient-to-br from-surface via-primary-fixed to-tertiary-fixed opacity-60"></div><div class="fixed top-[-10%] right-[-5%] w-96 h-96 bg-primary-container/20 rounded-full blur-[100px] z-0"></div><div class="fixed bottom-[-10%] left-[-5%] w-96 h-96 bg-secondary-container/20 rounded-full blur-[100px] z-0"></div><main class="relative z-10 w-full max-w-[480px] mx-container-padding-mobile lg:mx-0 bg-white/60 backdrop-blur-xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.05)] rounded-lg p-stack-lg flex flex-col items-center gap-stack-md"><div class="flex flex-col items-center gap-base mb-base"><img alt="cultivAR Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ0LCCoOsuv2P6A0gFyq77NkbvmbjcWaEKN3gdm66fLe7RcSpJQH9VSLhI2fMkn54oiib33GzuxRgLRQ9_5y5HZ3pG35UwzftapJup42WNCZYfzlFfdbesY36JOIkyCHU7iJcv2A9yYn67RQbjEwrUVTgfJVy69otfNwBrSuI6GhsKI5LciOdkgLi6cMu1UeLMrZBMH_kfrh2eU15KCXyN8d1Xk9vjqeLer-oH6nnCU50_xnPKUYpF0O5JziOkin9LijVX-tja-gi3FA"><span class="font-headline-md text-headline-md text-primary tracking-tight">cultivAR</span></div><div class="w-full"><div class="flex flex-col w-full relative">
+<div class="flex items-center gap-base mb-stack-md px-container-padding-mobile">
+<button aria-label="Go back" class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors" onclick="window.location.href='{{DATA:SCREEN:SCREEN_22}}'">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface m-0">Añadir Planta</h1>
+</div>
+<div class="relative w-full rounded-[24px] bg-white/60 backdrop-blur-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 p-stack-md flex flex-col gap-stack-md overflow-hidden">
+<!-- Decorative Blurs -->
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary-fixed rounded-full blur-[40px] opacity-50 pointer-events-none"></div>
+<div class="absolute -bottom-12 -left-12 w-32 h-32 bg-secondary-container rounded-full blur-[40px] opacity-50 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col gap-stack-md">
+<!-- Image Upload Placeholder -->
+<div class="flex flex-col items-center gap-stack-sm w-full">
+<div class="w-32 h-32 rounded-full border-2 border-primary overflow-hidden shadow-lg relative group"><img alt="Tomato Plant" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/AP1WRLtQZHWaVJPYqJcedz4KyVhZCKin4CPI-EhTeuS_zXlVeusyFfRT7HVUx63OzqvHBCMjX1_wfqZyNZ2VwiyD8Cf24nHYWGB9viCOlXE7opxps_Gdu7p988xlPcrA_eahCc5IbLf_UDPt0b03ArGWmHFY7spgEmuwjfpT-N-36ltFioftituUd-MrrF1_1V3hirmBVYNrSihihfYxPfSf-dh1INNVHEDFO3mEUkZYNAe2VN9bK47yTP88yk4"><div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-white">edit</span></div><input accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" type="file"></div>
+</div>
+<!-- Plant Name -->
+<div class="flex flex-col gap-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="plant-name">Nombre de la Planta</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">psychiatry</span>
+<input class="w-full h-14 bg-surface-container-low rounded-xl pl-12 pr-4 font-body-md text-on-surface shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-outline-variant" id="plant-name" placeholder="Ej. Tomate Cherry" type="text">
+</div>
+</div>
+<!-- Ideal Humidity -->
+<div class="flex flex-col gap-base">
+<div class="flex justify-between items-end">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="humidity-slider">Humedad Ideal</label>
+<span class="font-body-md text-primary font-semibold"><span class="" id="humidity-val">65</span>%</span>
+</div>
+<div class="relative h-14 bg-surface-container-low rounded-xl px-4 flex items-center gap-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)]">
+<span class="material-symbols-outlined text-outline text-[20px]">humidity_percentage</span>
+<input class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" id="humidity-slider" max="100" min="0" type="range" value="65">
+<span 'fill'="" 1;"="" class="material-symbols-outlined text-secondary text-[20px] style=" font-variation-settings:="">water_drop</span>
+</div>
+</div>
+<!-- Ideal Temperature -->
+<div class="flex flex-col gap-base">
+<div class="flex justify-between items-end">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="temp-slider">Temperatura Ideal</label>
+<span class="font-body-md text-error font-semibold"><span class="" id="temp-val">22</span>°C</span>
+</div>
+<div class="relative h-14 bg-surface-container-low rounded-xl px-4 flex items-center gap-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)]">
+<span class="material-symbols-outlined text-outline text-[20px]">ac_unit</span>
+<input class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-error" id="temp-slider" max="40" min="0" type="range" value="22">
+<span 'fill'="" 1;"="" class="material-symbols-outlined text-error text-[20px] style=" font-variation-settings:="">thermostat</span>
+</div>
+</div>
+<!-- Growth Stage Dropdown (Extra detail) -->
+</div>
+</div>
+<div class="mt-stack-lg flex flex-col gap-base w-full px-container-padding-mobile">
+<a class="w-full h-14 rounded-full bg-gradient-to-r from-primary to-[#5b7a50] text-on-primary font-body-md font-semibold flex items-center justify-center gap-2 shadow-[0_4px_12px_rgba(77,98,67,0.3)] hover:shadow-[0_6px_16px_rgba(77,98,67,0.4)] transition-all active:scale-[0.98] decoration-none" href="{{DATA:SCREEN:SCREEN_19}}"><span class="material-symbols-outlined">save</span> Guardar Planta</a>
+</div>
+<script>
+    // Simple interactions for sliders
+    document.getElementById('humidity-slider').addEventListener('input', function(e) {
+        document.getElementById('humidity-val').textContent = e.target.value;
+    });
+    
+    document.getElementById('temp-slider').addEventListener('input', function(e) {
+        document.getElementById('temp-val').textContent = e.target.value;
+    });
+  </script>
+</div></div><div class="mt-stack-md flex items-center gap-2"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" href="#"><span class="material-symbols-outlined text-[16px]">arrow_back</span> Volver al inicio de sesión</a></div></main>
+
+
+
+
+</body></html>

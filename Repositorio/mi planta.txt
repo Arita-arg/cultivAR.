@@ -1,0 +1,267 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>cultivAR - Catálogo de Plantas</title>
+<!-- Google Fonts: Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c2c8bf",
+                    "on-primary-fixed-variant": "#384c2f",
+                    "secondary-container": "#b2ddfd",
+                    "on-secondary-fixed-variant": "#1d4b66",
+                    "surface": "#f9f9f7",
+                    "outline-variant": "#c4c8bd",
+                    "primary-container": "#657b5a",
+                    "primary-fixed": "#d2eac2",
+                    "surface-container-highest": "#e2e3e1",
+                    "on-surface-variant": "#444840",
+                    "tertiary-fixed": "#dee4da",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-container-high": "#e8e8e6",
+                    "surface-tint": "#4f6445",
+                    "tertiary": "#575e56",
+                    "secondary": "#38637f",
+                    "surface-dim": "#dadad8",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#a1ccec",
+                    "on-primary-fixed": "#0e2007",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#37627e",
+                    "on-tertiary-fixed": "#171d17",
+                    "inverse-surface": "#2f3130",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e2e3e1",
+                    "on-surface": "#1a1c1b",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#f8ffee",
+                    "outline": "#74786f",
+                    "surface-container": "#eeeeec",
+                    "background": "#f9f9f7",
+                    "on-background": "#1a1c1b",
+                    "tertiary-container": "#70766e",
+                    "on-tertiary-container": "#f8fef4",
+                    "primary-fixed-dim": "#b6cea8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f4f4f2",
+                    "on-secondary-fixed": "#001e2e",
+                    "surface-bright": "#f9f9f7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#424841",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b6cea8",
+                    "primary": "#4d6243",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#c8e6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "container-padding-desktop": "48px",
+                    "container-padding-mobile": "20px",
+                    "stack-lg": "40px",
+                    "stack-md": "24px",
+                    "stack-sm": "12px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Montserrat"],
+                    "headline-xl": ["Montserrat"],
+                    "label-sm": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 10px 10px 20px rgba(77, 98, 67, 0.05), -10px -10px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .neo-recessed {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.05), inset -4px -4px 8px rgba(255,255,255,0.9);
+        }
+
+        .gradient-button {
+            background: linear-gradient(135deg, #4d6243 0%, #657b5a 100%);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(77, 98, 67, 0.2);
+        }
+
+        .animated-blur {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(20px, 20px); }
+        }
+
+        body {
+            background-color: #f9f9f7;
+            overflow-x: hidden;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding-mobile py-4 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-sm">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-primary">cultiv<span class="">AR</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="notifications">notifications</span>
+</div>
+</nav>
+<!-- Background Atmospheric Elements -->
+<div class="animated-blur bg-primary-container w-64 h-64 top-20 -left-20"></div>
+<div class="animated-blur bg-secondary-container w-96 h-96 bottom-40 -right-40"></div>
+<main class="pt-24 pb-32 px-container-padding-mobile max-w-7xl mx-auto">
+<header class="mb-10 text-center md:text-left">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-2">Catálogo de Plantas</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Descubre especies seleccionadas para tu ecosistema inteligente, desde hierbas medicinales hasta flores gourmet.</p>
+</header>
+<div class="flex gap-4 mb-8 border-b border-outline-variant/30">
+<button class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" id="tab-sugeridas" onclick="location.href='{{DATA:SCREEN:SCREEN_3}}'">
+    Sugeridas
+  </button>
+<button class="px-6 py-3 font-label-sm text-label-sm border-b-2 border-primary text-primary transition-all" id="tab-mis-plantas" onclick="location.href='#view-mis-plantas'">
+    Mis Plantas
+  </button>
+</div>
+<div id="view-mis-plantas">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmHYTvOLGCTgTJNUMBQDFXbE6QTwzqio1dH7SpANPEsFArJASZnmqNzzDMWdleXxt5742B3sAHCd7QTln6yNFLcHMpBFeRwryO6-hnfjDmIMLTQoI3TODXhSL7Xqsu5EbhhZnh4YmVH0R3LDyb31ZEIWOs8hHX1E9gSDuuujClSxJAkoKiTG4OHxRptDdiPf8cr4_mzTiGjZ2rzAWVgBDduuhbK7P3TANsnvPwDl86WnmuT91uT2P4">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Lechuga Batavia</h4>
+<span class="font-label-sm text-label-sm text-outline">Huerta Trasera</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Cosecha en 12d</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">water_drop</span> Húmedo</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Estado</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Crecimiento óptimo. Mantener el nivel de humedad actual.</p>
+</div>
+
+</div>
+</div>
+<div class="bg-surface-container rounded-2xl p-4 shadow-[4px_4px_10px_rgba(200,205,195,0.2),-4px_-4px_10px_rgba(255,255,255,0.7)] relative overflow-hidden group hover:shadow-lg transition-shadow opacity-70 border-dashed border-2 border-outline-variant flex flex-col justify-center min-h-[350px] cursor-pointer" onclick="location.href='{{DATA:SCREEN:SCREEN_20}}'">
+<div class="flex flex-col items-center justify-center py-6 text-center">
+<div class="w-16 h-16 bg-surface rounded-full flex items-center justify-center mb-3 shadow-inner">
+<span class="material-symbols-outlined text-outline text-3xl">potted_plant</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Aún tienes espacio.</p>
+<p class="font-label-sm text-outline mt-1 max-w-[200px]">Añade otra planta para empezar a monitorear su crecimiento.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed right-6 z-50 bottom-20">
+<button class="gradient-button flex items-center gap-2 px-6 py-4 rounded-full text-on-primary shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 active:scale-95" onclick="location.href='{{DATA:SCREEN:SCREEN_20}}'">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="font-label-sm text-label-sm font-bold">Añadir mi planta</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed left-0 right-0 z-50 flex justify-around items-center px-4 py-3 max-w-md mx-auto bg-surface/70 backdrop-blur-2xl border border-white/30 shadow-lg shadow-primary/10 bottom-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 scale-95 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="eco" style="font-variation-settings: &quot;FILL&quot; 1;">eco</span>
+<span class="font-label-sm text-label-sm">Perfiles</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Configuración</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and effects
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1.02)';
+            });
+        });
+
+        // Simple parallax on scroll for atmospheric blurs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const blurs = document.querySelectorAll('.animated-blur');
+            blurs.forEach((blur, index) => {
+                const speed = 0.2 * (index + 1);
+                blur.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

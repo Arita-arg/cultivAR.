@@ -1,0 +1,403 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>cultivAR - Catálogo de Plantas</title>
+<!-- Google Fonts: Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c2c8bf",
+                    "on-primary-fixed-variant": "#384c2f",
+                    "secondary-container": "#b2ddfd",
+                    "on-secondary-fixed-variant": "#1d4b66",
+                    "surface": "#f9f9f7",
+                    "outline-variant": "#c4c8bd",
+                    "primary-container": "#657b5a",
+                    "primary-fixed": "#d2eac2",
+                    "surface-container-highest": "#e2e3e1",
+                    "on-surface-variant": "#444840",
+                    "tertiary-fixed": "#dee4da",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-container-high": "#e8e8e6",
+                    "surface-tint": "#4f6445",
+                    "tertiary": "#575e56",
+                    "secondary": "#38637f",
+                    "surface-dim": "#dadad8",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#a1ccec",
+                    "on-primary-fixed": "#0e2007",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#37627e",
+                    "on-tertiary-fixed": "#171d17",
+                    "inverse-surface": "#2f3130",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e2e3e1",
+                    "on-surface": "#1a1c1b",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#f8ffee",
+                    "outline": "#74786f",
+                    "surface-container": "#eeeeec",
+                    "background": "#f9f9f7",
+                    "on-background": "#1a1c1b",
+                    "tertiary-container": "#70766e",
+                    "on-tertiary-container": "#f8fef4",
+                    "primary-fixed-dim": "#b6cea8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f4f4f2",
+                    "on-secondary-fixed": "#001e2e",
+                    "surface-bright": "#f9f9f7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#424841",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b6cea8",
+                    "primary": "#4d6243",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#c8e6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "container-padding-desktop": "48px",
+                    "container-padding-mobile": "20px",
+                    "stack-lg": "40px",
+                    "stack-md": "24px",
+                    "stack-sm": "12px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Montserrat"],
+                    "headline-xl": ["Montserrat"],
+                    "label-sm": ["Montserrat"],
+                    "body-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 10px 10px 20px rgba(77, 98, 67, 0.05), -10px -10px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .neo-recessed {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.05), inset -4px -4px 8px rgba(255,255,255,0.9);
+        }
+
+        .gradient-button {
+            background: linear-gradient(135deg, #4d6243 0%, #657b5a 100%);
+            transition: all 0.3s ease;
+        }
+
+        .gradient-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(77, 98, 67, 0.2);
+        }
+
+        .animated-blur {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(20px, 20px); }
+        }
+
+        body {
+            background-color: #f9f9f7;
+            overflow-x: hidden;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding-mobile py-4 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-sm">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-primary">cultiv<span class="">AR</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="notifications">notifications</span>
+</div>
+</nav>
+<!-- Background Atmospheric Elements -->
+<div class="animated-blur bg-primary-container w-64 h-64 top-20 -left-20"></div>
+<div class="animated-blur bg-secondary-container w-96 h-96 bottom-40 -right-40"></div>
+<main class="pt-24 pb-32 px-container-padding-mobile max-w-7xl mx-auto"><header class="mb-10 text-center md:text-left">
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-2">Catálogo de Plantas</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Descubre especies seleccionadas para tu ecosistema inteligente, desde hierbas medicinales hasta flores gourmet.</p>
+</header>
+<div class="flex gap-4 mb-8 border-b border-outline-variant/30">
+<button class="px-6 py-3 font-label-sm text-label-sm border-b-2 border-primary text-primary transition-all" id="tab-sugeridas">
+    Sugeridas
+  </button>
+<button class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-all" id="tab-mis-plantas" onclick="location.href='{{DATA:SCREEN:SCREEN_22}}'">
+    Mis Plantas
+  </button>
+</div>
+<div id="view-sugeridas">
+<section class="mb-12">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="medical_services">medical_services</span>
+<h3 class="font-headline-md text-headline-md text-primary">Especies Medicinales</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1: Burrito -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzO3Isf2UMDx3pxUV770CfHZDeOlXcBFbP4aWXlUWBnnTyamE1rUUvbINXaUbdgg7XdL1MLmi-wY24NFBu_s8P7g4iOCL-jLWgBmv0srmHc3Gmq2L1bkGud4_Q3x9J6re0Ov7h_DgOcEd0uKUIAlkHAr6su66aP2o2auuTv7lqg_Qw6dhHc1srVo6Ovw8ZW4WV40yMxt0lT7diI9De0_Zvc5c7I3fn5PDM9YUgj1EUfVSGbdecVuKj">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Burrito</h4>
+<span class="font-label-sm text-label-sm text-outline">Aloysia polystachya</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Digestivo</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Sedante</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30 mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="health_and_safety">health_and_safety</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Beneficios</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Excelentes propiedades digestivas y un suave efecto sedante ideal para infusiones.</p>
+</div>
+</div>
+</div>
+<!-- Card 2: Cedrón -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLr3boTQHfXwrAFL43J5faPAfnfeWA-kRtlucr_Q4qIu6IAt8imdjTzXW66IpNda441ZT1vA7Z3h49ocD3K79syLfxst9xCrxveYCGlq1aKCdJPs47zKtLCdVigoAL1WOg_BVl9XuZss_x8MYSCsB96VSPpR1ZJQMhGTPuHPY3PjostBwYdksmqbG8N-vdlpOEl1KyURGdEN3DgSMPWaeUu71FkZnU0KUur2Qh37ViHWmdSqQ9M_xK">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Cedrón</h4>
+<span class="font-label-sm text-label-sm text-outline">Aloysia citrodora</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Relajante</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Digestivo</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30 mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="health_and_safety">health_and_safety</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Beneficios</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Conocido por sus propiedades relajantes y su capacidad para aliviar molestias digestivas.</p>
+</div>
+</div>
+</div>
+<!-- Card 3: Menta -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRws-2Ib559Q96owsl3AbYucuI5EvvnC2oXSNSbjv1EnTemgyxwklrxf9E7k51pzcrgfFSakfKyZEtK7AQTZEYFd8DqXsOGD4wsoDg8NUCuouAPb2kGY2k-Fm7J803kN9O2fE_H87SIGixcJicYcTOFdbFzbAoOcN192qCoiZZfhilhdueruyAI798s9kRlcZKwOyz5IBJ_9G8cZ8MYlm7Vzzm8-hDUAFm0OhxQzUrc6zLRW3P3w7I">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Menta</h4>
+<span class="font-label-sm text-label-sm text-outline">Mentha piperita</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Refrescante</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Digestivo</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30 mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="health_and_safety">health_and_safety</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Beneficios</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Aporta un efecto refrescante inmediato y favorece la digestión tras comidas pesadas.</p>
+</div>
+</div>
+</div>
+<!-- Card 4: Melisa -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLzhBdt4vtdR6U1yEOYz2B_1NPKbRwM8koFHdFAQ5OmKNpU7RqoCRB8PI2j-S2llG4xVWRXa2bTzJh94X4MHmrfIm6J6fVnd1abSVcZ6G_ELEPsDXe7RFlJXgjzpfYHBzGmpOXDIcckkpLHkgcha3MK1sDswwnKu7SEpSUa8R7N9L1cvs9YMws7_h8p6GIzlrdiYLDbGxzAtZFwFtKveh9vS6USt084LDvNytLd6KJqbaVmbcW8adW">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Melisa</h4>
+<span class="font-label-sm text-label-sm text-outline">Melissa officinalis</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Ansiolítico</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Sueño</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30 mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="health_and_safety">health_and_safety</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Beneficios</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Actúa como ansiolítico natural y es un gran aliado para conciliar el sueño.</p>
+</div>
+</div>
+</div>
+<!-- Card 5: Manzanilla -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDgnkqVWk14AZCJ8Nr6H6nknK2wRUf9IyCq2vNotxhsVCARADyEjmDXlQ-N7pyEAQAkFHbghF5paLLpuatmivckisLcGAXe9lKbb_D1yDBBcLeqHKfKdkWl1n4RyOc-NWQp6u9GTaPyqNdUOH5AeK7ZQVQfrwQdFj5nGduzZD2hYTSaahpAcDrcwB6HV_fJXewDJxcBLkbv2PzFqJB2dGAOy8dCcnuJxWz1-VmoEli_OQaWGPk6wfd">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Manzanilla</h4>
+<span class="font-label-sm text-label-sm text-outline">Matricaria chamomilla</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Calmante</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Antiinflamatorio</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30 mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="health_and_safety">health_and_safety</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Beneficios</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Poderoso efecto calmante y reconocidas propiedades antiinflamatorias.</p>
+</div>
+</div>
+</div>
+<!-- Card 6: Caléndula -->
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg3M6NjHnIudCV1xcpTcLVUpbGCShZytyoBEkHOrJybGnOqqtj5IIDDZyrEU0zTf238jdyf0rYA8jHTaNhq1UJfIZ7K7HZxnwTblgaRiYuxJ__fXGQetiYoM1_DVBn3wM5lcyZGZlwjN_UPeJVATKqT4bD8Mfb5VcWEBS1xuTn6VBeHSXeXEE2NdrejhjNzX7o5QBiCGacKHQbgMBNNPfYpVLR1MXj3NTXKxExOxvpOmAeEJrnnTZm">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Caléndula</h4>
+<span class="font-label-sm text-label-sm text-outline">Calendula officinalis</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Cicatrizante</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Piel</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30 mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="health_and_safety">health_and_safety</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Beneficios</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Ideal para el cuidado de la piel gracias a sus profundos beneficios curativos y cicatrizantes.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="hidden" id="view-mis-plantas">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="glass-card rounded-lg overflow-hidden flex flex-col group transition-all duration-500 hover:scale-[1.02]">
+<div class="h-64 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_gwWgKwvwycxnRVA1UV02QJ1XuBc9vhpoITiyx1JXGIeeX-035uR69VtiDJI4pm9pHRhGKtDse1fqWGS0ZXhvdXVfQUUtyUnP-qscxnQiN4gyLgLi_fSllAsUZxUBoys09RaMVr2WS-lSFqhrGDw29bcV5MNqZ-KPUpAr2tJBOQlT-JDpcVjOirTUyxF0R2tyiX89KqNZ6wv7Rc8nN6-YUvVif0ZZv_PfSAy5WsVBnNpY74WXPQpikQQkmvsGnLsTSQ5rzpcgKRs">
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Mi Albahaca</h4>
+<span class="font-label-sm text-label-sm text-outline">Ocimum basilicum</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Personalizada</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">Vegetativa</span>
+</div>
+<div class="neo-recessed p-4 rounded-lg bg-surface-container-high border border-outline-variant/30 mb-6">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-bold">Estado</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Crecimiento óptimo. Próximo riego en 2 días.</p>
+</div>
+</div>
+</div>
+</div>
+</div></main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed left-0 right-0 z-50 flex justify-around items-center px-4 py-3 mx-auto bg-surface/70 backdrop-blur-2xl border border-white/30 shadow-lg shadow-primary/10 bottom-0">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 scale-95 transition-all duration-300" href="{{DATA:SCREEN:SCREEN_3}}">
+<span class="material-symbols-outlined" data-icon="eco" style="font-variation-settings: &quot;FILL&quot; 1;">eco</span>
+<span class="font-label-sm text-label-sm">Perfiles</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Configuración</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and effects
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1.02)';
+            });
+        });
+
+        // Simple parallax on scroll for atmospheric blurs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const blurs = document.querySelectorAll('.animated-blur');
+            blurs.forEach((blur, index) => {
+                const speed = 0.2 * (index + 1);
+                blur.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+
+
+</body></html>

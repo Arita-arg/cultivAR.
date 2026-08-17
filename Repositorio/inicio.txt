@@ -1,0 +1,345 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>cultivAR - Panel Principal</title>
+<!-- Montserrat Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c2c8bf",
+                        "on-primary-fixed-variant": "#384c2f",
+                        "secondary-container": "#b2ddfd",
+                        "on-secondary-fixed-variant": "#1d4b66",
+                        "surface": "#f9f9f7",
+                        "outline-variant": "#c4c8bd",
+                        "primary-container": "#657b5a",
+                        "primary-fixed": "#d2eac2",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-surface-variant": "#444840",
+                        "tertiary-fixed": "#dee4da",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-tint": "#4f6445",
+                        "tertiary": "#575e56",
+                        "secondary": "#38637f",
+                        "surface-dim": "#dadad8",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#a1ccec",
+                        "on-primary-fixed": "#0e2007",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#37627e",
+                        "on-tertiary-fixed": "#171d17",
+                        "inverse-surface": "#2f3130",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface": "#1a1c1b",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#f8ffee",
+                        "outline": "#74786f",
+                        "surface-container": "#eeeeec",
+                        "background": "#f9f9f7",
+                        "on-background": "#1a1c1b",
+                        "tertiary-container": "#70766e",
+                        "on-tertiary-container": "#f8fef4",
+                        "primary-fixed-dim": "#b6cea8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f4f2",
+                        "on-secondary-fixed": "#001e2e",
+                        "surface-bright": "#f9f9f7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#424841",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b6cea8",
+                        "primary": "#4d6243",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#c8e6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-padding-desktop": "48px",
+                        "container-padding-mobile": "20px",
+                        "stack-lg": "40px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "label-sm": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .neomorphic-card {
+            background: #f9f9f7;
+            box-shadow: 8px 8px 16px rgba(77, 98, 67, 0.08), -8px -8px 16px rgba(255, 255, 255, 0.8);
+        }
+        .neomorphic-inset {
+            background: #f9f9f7;
+            box-shadow: inset 4px 4px 8px rgba(77, 98, 67, 0.05), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-fan {
+            animation: spin-slow 2s linear infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding-mobile py-4 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">eco</span>
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-primary">cultiv<span class="">AR</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity">notifications</button>
+
+</div>
+</header>
+<main class="pt-24 px-container-padding-mobile max-w-5xl mx-auto space-y-stack-lg">
+<!-- Greeting Section -->
+<section class="space-y-1">
+<h2 class="font-headline-xl text-headline-xl text-primary">Panel Principal</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Bienvenido&nbsp; a cultivAR. Tus cultivos están saludables.</p>
+</section>
+<!-- Metric Cards Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Temperature Card -->
+<div class="neomorphic-card rounded-lg p-6 flex items-center justify-between relative overflow-hidden group">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-orange-500/10 blur-3xl rounded-full transition-transform group-hover:scale-150"></div>
+<div class="space-y-2">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Temperatura Actual</p>
+<h3 class="font-headline-xl text-headline-xl text-orange-600">24°C</h3>
+<div class="flex items-center gap-2 text-primary font-label-sm">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="">Óptima</span>
+</div>
+</div>
+<div class="relative w-20 h-20">
+<svg class="w-full h-full">
+<circle class="text-surface-variant stroke-current" cx="40" cy="40" fill="transparent" r="34" stroke-width="6"></circle>
+<circle class="text-orange-500 stroke-current progress-ring-circle" cx="40" cy="40" fill="transparent" r="34" stroke-linecap="round" stroke-width="6" style="stroke-dasharray: 213.6; stroke-dashoffset: 85;"></circle>
+</svg>
+<span class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-orange-500" style="font-variation-settings: &quot;FILL&quot; 1;">thermostat</span>
+</div>
+</div>
+<!-- Humidity Card -->
+<div class="neomorphic-card rounded-lg p-6 flex items-center justify-between relative overflow-hidden group">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary/10 blur-3xl rounded-full transition-transform group-hover:scale-150"></div>
+<div class="space-y-2">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Humedad Actual</p>
+<h3 class="font-headline-xl text-headline-xl text-secondary">62%</h3>
+<div class="flex items-center gap-2 text-primary font-label-sm">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="">Estable</span>
+</div>
+</div>
+<div class="relative w-20 h-20">
+<svg class="w-full h-full">
+<circle class="text-surface-variant stroke-current" cx="40" cy="40" fill="transparent" r="34" stroke-width="6"></circle>
+<circle class="text-secondary stroke-current progress-ring-circle" cx="40" cy="40" fill="transparent" r="34" stroke-linecap="round" stroke-width="6" style="stroke-dasharray: 213.6; stroke-dashoffset: 40;"></circle>
+</svg>
+<span class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-secondary" style="font-variation-settings: &quot;FILL&quot; 1;">humidity_percentage</span>
+</div>
+</div>
+</section>
+<!-- Actuators Section -->
+<section class="space-y-stack-md">
+<h4 class="font-headline-md text-headline-md text-on-surface">Actuadores Activos</h4>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-stack-sm">
+<!-- Bomba de Riego -->
+<div class="neomorphic-card rounded-lg p-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="p-3 bg-secondary-container rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: &quot;FILL&quot; 1;">water_drop</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<h5 class="font-label-sm text-on-surface font-bold">Bomba de Riego</h5>
+<p class="text-[14px] text-primary">Regando</p>
+</div>
+</div>
+<!-- Iluminación -->
+<div class="neomorphic-card rounded-lg p-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="p-3 bg-primary-fixed rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">lightbulb</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<h5 class="font-label-sm text-on-surface font-bold">Iluminación</h5>
+<p class="text-[14px] text-on-surface-variant">Apagadas</p>
+</div>
+</div>
+<!-- Ventilación -->
+<div class="neomorphic-card rounded-lg p-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="p-3 bg-tertiary-fixed rounded-full">
+<span class="material-symbols-outlined text-tertiary animate-fan" style="font-variation-settings: &quot;FILL&quot; 0;">mode_fan</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox">
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div>
+<h5 class="font-label-sm text-on-surface font-bold">Ventilación</h5>
+<p class="text-[14px] text-primary">Activo</p>
+</div>
+</div>
+</div>
+</section>
+<!-- History Section -->
+<section class="space-y-stack-md">
+<h4 class="font-headline-md text-headline-md text-on-surface">Historial de 24 horas</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<!-- Temp History -->
+<div class="neomorphic-card rounded-lg p-6 space-y-4">
+<div class="flex justify-between items-center">
+<h5 class="font-label-sm text-on-surface-variant uppercase">Temperatura (°C)</h5>
+<span class="material-symbols-outlined text-orange-500">show_chart</span>
+</div>
+<div class="h-40 w-full relative flex items-end gap-1">
+<!-- Simulated Chart Bars/Line -->
+<div class="flex-1 bg-orange-100 rounded-t-full" style="height: 40%"></div>
+<div class="flex-1 bg-orange-200 rounded-t-full" style="height: 55%"></div>
+<div class="flex-1 bg-orange-300 rounded-t-full" style="height: 70%"></div>
+<div class="flex-1 bg-orange-400 rounded-t-full" style="height: 85%"></div>
+<div class="flex-1 bg-orange-500 rounded-t-full" style="height: 90%"></div>
+<div class="flex-1 bg-orange-400 rounded-t-full" style="height: 75%"></div>
+<div class="flex-1 bg-orange-300 rounded-t-full" style="height: 60%"></div>
+<div class="flex-1 bg-orange-200 rounded-t-full" style="height: 50%"></div>
+</div>
+<div class="flex justify-between text-[10px] text-on-surface-variant font-label-sm">
+<span class="">00:00</span>
+<span class="">08:00</span>
+<span class="">16:00</span>
+<span class="">24:00</span>
+</div>
+</div>
+<!-- Humidity History -->
+<div class="neomorphic-card rounded-lg p-6 space-y-4">
+<div class="flex justify-between items-center">
+<h5 class="font-label-sm text-on-surface-variant uppercase">Humedad (%)</h5>
+<span class="material-symbols-outlined text-secondary">show_chart</span>
+</div>
+<div class="h-40 w-full relative flex items-end gap-1">
+<!-- Simulated Chart Bars/Line -->
+<div class="flex-1 bg-blue-100 rounded-t-full" style="height: 60%"></div>
+<div class="flex-1 bg-blue-200 rounded-t-full" style="height: 65%"></div>
+<div class="flex-1 bg-blue-300 rounded-t-full" style="height: 72%"></div>
+<div class="flex-1 bg-blue-400 rounded-t-full" style="height: 68%"></div>
+<div class="flex-1 bg-blue-500 rounded-t-full" style="height: 62%"></div>
+<div class="flex-1 bg-blue-400 rounded-t-full" style="height: 58%"></div>
+<div class="flex-1 bg-blue-300 rounded-t-full" style="height: 60%"></div>
+<div class="flex-1 bg-blue-200 rounded-t-full" style="height: 65%"></div>
+</div>
+<div class="flex justify-between text-[10px] text-on-surface-variant font-label-sm">
+<span class="">00:00</span>
+<span class="">08:00</span>
+<span class="">16:00</span>
+<span class="">24:00</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-4 py-3 max-w-md mx-auto bg-surface/70 backdrop-blur-2xl border border-white/30 rounded-full shadow-lg shadow-primary/10">
+<!-- Inicio Tab (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 transition-all duration-300 scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</a>
+<!-- Perfiles Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">eco</span>
+<span class="font-label-sm text-label-sm">Perfiles</span>
+</a>
+<!-- Configuración Tab -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Configuración</span>
+</a>
+</nav>
+<!-- Floating Action Button (Only on Home) -->
+
+<script>
+        // Simple Interaction Logic
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const statusText = e.target.closest('.neomorphic-card').querySelector('p');
+                if(e.target.checked) {
+                    statusText.classList.remove('text-on-surface-variant');
+                    statusText.classList.add('text-primary');
+                    if(statusText.innerText === 'Apagado') statusText.innerText = 'Activo';
+                    if(statusText.innerText === 'Apagadas') statusText.innerText = 'Encendidas';
+                } else {
+                    statusText.classList.add('text-on-surface-variant');
+                    statusText.classList.remove('text-primary');
+                    if(statusText.innerText === 'Activo' || statusText.innerText === 'Regando') statusText.innerText = 'Apagado';
+                    if(statusText.innerText === 'Encendidas') statusText.innerText = 'Apagadas';
+                }
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

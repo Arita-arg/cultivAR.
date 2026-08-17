@@ -1,0 +1,244 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>cultivAR - Configuración</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neomorph-card {
+            background: #f9f9f7;
+            box-shadow: 10px 10px 20px rgba(77, 98, 67, 0.05), -10px -10px 20px rgba(255, 255, 255, 0.8);
+            border-radius: 2rem;
+        }
+        .neomorph-inset {
+            background: #f9f9f7;
+            box-shadow: inset 4px 4px 8px rgba(77, 98, 67, 0.08), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .switch-checkbox:checked + .switch-label {
+            background-color: #4d6243;
+        }
+        .switch-checkbox:checked + .switch-label .switch-ball {
+            transform: translateX(24px);
+        }
+        body {
+            background-color: #f9f9f7;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a1c1b;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c2c8bf",
+                        "on-primary-fixed-variant": "#384c2f",
+                        "secondary-container": "#b2ddfd",
+                        "on-secondary-fixed-variant": "#1d4b66",
+                        "surface": "#f9f9f7",
+                        "outline-variant": "#c4c8bd",
+                        "primary-container": "#657b5a",
+                        "primary-fixed": "#d2eac2",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-surface-variant": "#444840",
+                        "tertiary-fixed": "#dee4da",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-tint": "#4f6445",
+                        "tertiary": "#575e56",
+                        "secondary": "#38637f",
+                        "surface-dim": "#dadad8",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#a1ccec",
+                        "on-primary-fixed": "#0e2007",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#37627e",
+                        "on-tertiary-fixed": "#171d17",
+                        "inverse-surface": "#2f3130",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface": "#1a1c1b",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#f8ffee",
+                        "outline": "#74786f",
+                        "surface-container": "#eeeeec",
+                        "background": "#f9f9f7",
+                        "on-background": "#1a1c1b",
+                        "tertiary-container": "#70766e",
+                        "on-tertiary-container": "#f8fef4",
+                        "primary-fixed-dim": "#b6cea8",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f4f4f2",
+                        "on-secondary-fixed": "#001e2e",
+                        "surface-bright": "#f9f9f7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#424841",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b6cea8",
+                        "primary": "#4d6243",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#c8e6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-padding-desktop": "48px",
+                        "container-padding-mobile": "20px",
+                        "stack-lg": "40px",
+                        "stack-md": "24px",
+                        "stack-sm": "12px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "label-sm": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding-mobile py-4 bg-surface/80 backdrop-blur-xl border-b border-white/20 shadow-sm">
+<div class="flex items-center gap-4">
+
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-primary">cultiv<span class="">AR</span></h1>
+</div>
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-container-padding-mobile max-w-2xl mx-auto space-y-stack-lg">
+<!-- Header Section -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Configuración</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Personaliza tu experiencia de cultivo inteligente.</p>
+</section>
+<!-- Notification Controls -->
+<section class="space-y-stack-sm">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Controles de Notificación</h3>
+</div>
+<div class="neomorph-card p-6 space-y-6">
+<!-- Alert Row -->
+<div class="flex items-center justify-between">
+<div class="space-y-1">
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Alertas Críticas</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Avisos inmediatos sobre salud del suelo y plagas.</p>
+</div>
+<div class="relative inline-block w-12 h-6 transition duration-200 ease-in">
+<input checked="" class="switch-checkbox absolute opacity-0 w-0 h-0" id="critical-alerts" type="checkbox">
+<label class="switch-label block overflow-hidden h-6 rounded-full bg-outline-variant cursor-pointer transition-colors duration-300" for="critical-alerts">
+<span class="switch-ball block w-4 h-4 mt-1 ml-1 rounded-full bg-white shadow-md transition-transform duration-300"></span>
+</label>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30"></div>
+<!-- Report Row -->
+<div class="flex items-center justify-between">
+<div class="space-y-1">
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Reportes Semanales</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Resumen detallado de productividad y clima.</p>
+</div>
+<div class="relative inline-block w-12 h-6 transition duration-200 ease-in">
+<input class="switch-checkbox absolute opacity-0 w-0 h-0" id="weekly-reports" type="checkbox">
+<label class="switch-label block overflow-hidden h-6 rounded-full bg-outline-variant cursor-pointer transition-colors duration-300" for="weekly-reports">
+<span class="switch-ball block w-4 h-4 mt-1 ml-1 rounded-full bg-white shadow-md transition-transform duration-300"></span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Educational Content Section -->
+
+<!-- Logout Action -->
+<section class="pt-8">
+<button class="w-full neomorph-card py-4 flex items-center justify-center gap-3 text-error font-bold hover:bg-error/5 transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Cerrar Sesión
+            </button>
+<p class="text-center mt-6 font-label-sm text-label-sm text-outline">Versión 2.4.0 • cultivAR Labs</p>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-4 py-3 max-w-md mx-auto bg-surface/70 backdrop-blur-2xl rounded-full border border-white/30 shadow-lg shadow-primary/10">
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Inicio</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-primary/5 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="eco">eco</span>
+<span class="font-label-sm text-label-sm">Perfiles</span>
+</div>
+<!-- Active State: Configuración -->
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 transition-all duration-300 scale-90">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: &quot;FILL&quot; 1;">settings</span>
+<span class="font-label-sm text-label-sm">Configuración</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for switches
+        const checkboxes = document.querySelectorAll('.switch-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if(this.checked) {
+                    label.classList.add('bg-primary');
+                    label.classList.remove('bg-outline-variant');
+                } else {
+                    label.classList.remove('bg-primary');
+                    label.classList.add('bg-outline-variant');
+                }
+            });
+        });
+
+        // Simple scale effect for nav buttons
+        const navButtons = document.querySelectorAll('nav > div');
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-90');
+                setTimeout(() => this.classList.remove('scale-90'), 200);
+            });
+        });
+    </script>
+
+
+
+
+</body></html>
