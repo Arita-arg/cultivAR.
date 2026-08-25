@@ -4,6 +4,9 @@
 #include <DHT.h>
 #include <ArduinoJson.h>
 
+#ifndef CREDENCIALES_H
+#define CREDENCIALES_H
+
 // --- CONFIGURACIÓN DE RED ---
 const char* ssid = "Wokwi-GUEST";
 const char* password = "";
@@ -11,6 +14,8 @@ const char* password = "";
 // --- CONFIGURACIÓN DE ENDPOINTS (MongoDB / Servidor) ---
 const char* url_enviar_datos = "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/TU_APP/service/http/incoming_webhook/recibir_datos";
 const char* url_obtener_config = "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/TU_APP/service/http/incoming_webhook/obtener_config";
+
+#endif
 
 // --- PINES ---
 #define DHTPIN 4
